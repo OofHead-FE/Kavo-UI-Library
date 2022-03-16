@@ -1,3 +1,11 @@
+local ensound = Instance.mew("Sound",Workspace)
+ensound.SoundId = "rbxassetid://9113747762"
+ensound.Name = "enableModule"
+
+local disound = Instance.mew("Sound",Workspace)
+disound.SoundId = "rbxassetid://9113750358"
+disound.Name = "disableModule"
+
 local Kavo = {}
 
 local tween = game:GetService("TweenService")
@@ -691,6 +699,7 @@ function Kavo.CreateLib(kavName, themeList)
                 local sample = Sample
 
                 btn.MouseButton1Click:Connect(function()
+                    ensound:Play()
                     if not focusing then
                         callback()
                         local c = sample:Clone()
@@ -1203,12 +1212,14 @@ function Kavo.CreateLib(kavName, themeList)
                             togName.Text = newText
                         end
                         if isTogOn then
+                            ensound:Play()
                             toggled = true
                             game.TweenService:Create(img, TweenInfo.new(0.11, Enum.EasingStyle.Linear,Enum.EasingDirection.In), {
                                 ImageTransparency = 0
                             }):Play()
                             pcall(callback, toggled)
                         else
+                            disound:Play()
                             toggled = false
                             game.TweenService:Create(img, TweenInfo.new(0.11, Enum.EasingStyle.Linear,Enum.EasingDirection.In), {
                                 ImageTransparency = 1
